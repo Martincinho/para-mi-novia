@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>San Valentín</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7d8d4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2em;
+            color: #d9534f;
+        }
+        .buttons {
+            margin-top: 30px;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: transform 0.3s;
+        }
+        .yes {
+            background-color: #5bc0de;
+            color: white;
+        }
+        .no {
+            background-color: #d9534f;
+            color: white;
+            position: relative;
+        }
+        #message {
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: #5bc0de;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 4px solid #5bc0de;
+            width: 0;
+        }
+        .heart {
+            color: red;
+            font-size: 1.8em;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>¿Quieres ser mi San Valentín?</h1>
+        <div class="buttons">
+            <button class="yes">Sí</button>
+            <button class="no">No</button>
+        </div>
+        <div id="message"></div>
+    </div>
+
+    <script>
+        const noButton = document.querySelector('.no');
+        const yesButton = document.querySelector('.yes');
+        const messageDiv = document.getElementById('message');
+
+        // Movimiento del botón "No"
+        noButton.addEventListener('mouseover', function() {
+            const maxDistance = 200; // Distancia máxima en px
+            const randomX = Math.floor(Math.random() * maxDistance * 2) - maxDistance;
+            const randomY = Math.floor(Math.random() * maxDistance * 2) - maxDistance;
+
+            noButton.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        });
+
+        // Función para escribir el mensaje
+        function typeWriter(text, i, callback) {
+            if (i < text.length) {
+                messageDiv.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(function() {
+                    typeWriter(text, i, callback);
+                }, 100); // Velocidad de escritura (en milisegundos)
+            } else if (callback) {
+                callback();
+            }
+        }
+
+        // Mostrar mensaje al presionar "Sí"
+        yesButton.addEventListener('click', function() {
+            messageDiv.style.width = "100%"; // Hace que el contenedor de texto tenga el ancho necesario para mostrar el mensaje
+            typeWriter("Te amo, gracias por ser mi San Valentín", 0, function() {
+                messageDiv.innerHTML += '<span class="heart">❤️</span>';
+            });
+        });
+    </script>
+
+</body>
+</html>
