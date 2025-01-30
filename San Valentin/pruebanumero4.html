@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi amor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #ffb6c1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+            text-align: center;
+            background-image: url('imagenes/fondocorazones2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 90%;
+            margin: 20px;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #e63946;
+            margin-bottom: 30px;
+            font-family: 'Times New Roman', serif;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .message {
+            font-size: 1.2rem;
+            color: #4a4a4a;
+            margin-bottom: 30px;
+            line-height: 1.8;
+            white-space: pre-line;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            font-size: 1.4rem;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.2);
+            background-color: #FF1493; /* Color rosa fuerte para el botón inicial */
+        }
+
+        #si-btn {
+            background-color: #2ecc71;
+        }
+
+        #no-btn {
+            background-color: #e74c3c;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(230, 57, 70, 0.3);
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="content">
+        <h1>Querida Javiera Ferrer</h1>
+        <p class="message">Quería escribirte unas palabras para que sepas que te convertiste en una de las personas más importantes en mi vida y lograste ganarte todo mi amor. Aún recuerdo ese día en el que preparé una linda mesa de mantel rojo con velas, unas bellas flores amarillas, una carta de amor y, por último, dos anillos hermosos que significaban una promesa inquebrantable, que nos comprometía a amarnos y cuidar nuestro amor a pesar de la distancia. Simplemente una linda promesa de amor que, tres meses después, se convirtió en algo mucho más formal, ya que te pedí ser tu novio frente a un hermoso lugar como la Casa Batlló.
+
+Eres mi persona favorita y agradezco cada cosa que has hecho por mí, sobre todo cruzar el océano para poder vernos. Quería también pedirte disculpas por mis errores, porque si hay algo que me importa mucho es cuidarte y no perderte jamás, para poder vivir mil momentos a tu lado. Si te soy sincero, a tu lado soy infinitamente mucho más feliz que sin ti.
+
+Entonces, quería decirte lo afortunado que me siento de tener a una mujer tan hermosa a mi lado, que cada vez que miro tus ojos verdes, que logran hipnotizarme, pienso en lo mucho que te amo y en lo muy enamorado que estoy de ti. La distancia no significa nada cuando hay dos personas enamoradas, el amor rompe cualquier barrera y si tuviera que elegir mi destino, seria caminar a tu lado sin importar el camino.
+
+Sin nada más que agregar...</p>
+        <button class="btn" onclick="preguntar()">Tengo que preguntarte algo...</button>
+    </div>
+
+    <script>
+        function preguntar() {
+            document.getElementById('content').innerHTML = `
+                <h1>¿Quieres ser mi San Valentín?</h1>
+                <div class="btn-container">
+                    <button class="btn" id="si-btn" onclick="responderSi()">Sí</button>
+                    <button class="btn" id="no-btn" onmouseover="moverNo()">No</button>
+                </div>
+            `;
+        }
+
+        function responderSi() {
+            document.getElementById('content').innerHTML = `
+                <h1>Gracias por ser mi San Valentín ❤️</h1>
+                <p class="message">Te amo con todo mi corazón.</p>
+            `;
+        }
+
+        function moverNo() {
+            const btnNo = document.getElementById('no-btn');
+            const maxX = window.innerWidth - btnNo.offsetWidth - 50;
+            const maxY = window.innerHeight - btnNo.offsetHeight - 50;
+            let x = Math.random() * maxX;
+            let y = Math.random() * maxY;
+            
+            btnNo.style.position = 'fixed';
+            btnNo.style.left = `${x}px`;
+            btnNo.style.top = `${y}px`;
+        }
+    </script>
+</body>
+</html>
